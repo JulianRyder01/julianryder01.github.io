@@ -9,7 +9,7 @@ redirect_from:
 
 I'm Jiajun Wan, You can also call me Julian Ryder.
 
-I'm a bachelor in GDUT, an independent Musician and a NLP Researcher.
+I'm a bachelor's student at GDUT, an independent Musician and an NLP Researcher.
 
 My Work
 ======
