@@ -1,0 +1,106 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f4f4f4;
+    height: 100%; /* 确保body和html占满视口 */
+    overflow: hidden; /* 防止滑动条，实现全屏效果 */
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.main-container {
+    display: flex;
+    height: calc(100vh - 84px); /* 视口高度减去header高度 */
+}
+
+/* 移动端优化：控制面板和预览垂直堆叠 */
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto; /* 允许在移动端滚动 */
+    }
+    .control-panel, .preview-panel {
+        width: 100%;
+        max-height: none;
+    }
+}
+
+.control-panel {
+    flex: 0 0 400px; /* 固定宽度 */
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.preview-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* 输入控件样式 */
+section {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.input-group input[type="text"], 
+.input-group input[type="number"],
+.input-group select {
+    width: 95%;
+    padding: 8px;
+    margin-top: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.style-settings {
+    display: flex;
+    justify-content: space-between;
+}
+.style-settings input, .style-settings select {
+    width: 45%;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 1.1em;
+}
+
+/* Canvas 预览区 */
+#imageCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    border: 2px dashed #aaa;
+    display: block; /* 移除行内块的底部间隙 */
+}
