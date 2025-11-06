@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
+    <title>图片日期修改工具 (Web版)</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 自动全屏和移动端优化：设置了 user-scalable=no, minimal-ui，并通过 CSS 确保全屏布局 -->
+</head>
+<body>
+
+    <header>
+        <h1>图片日期修改工具 (Web版)</h1>
+        <p>此版本在浏览器中运行，功能简化，不支持复杂的本地字体加载和选区功能。</p>
+    </header>
+
+    <div class="main-container">
+        <!-- 控制面板 -->
+        <div class="control-panel">
+            <h2>设置与内容</h2>
+
+            <section>
+                <h3>步骤 1: 图片来源</h3>
+                <input type="file" id="imageLoader" accept=".png, .jpg, .jpeg">
+                <p id="imageStatus">请加载图片或确保 `pay.png` 在同目录下</p>
+            </section>
+
+            <section class="coords-section">
+                <h3>步骤 2: 内容与坐标</h3>
+                <div class="input-group">
+                    <label>日期 (例: 2023年01月01日)</label>
+                    <input type="text" id="dateText" value="2025年11月06日" oninput="redrawCanvas()">
+                    <label>日期坐标 (x1,y1,x2,y2 - 原图像素)</label>
+                    <input type="text" id="dateCoords" value="410,1265,810,1332" oninput="redrawCanvas()">
+                </div>
+
+                <div class="input-group">
+                    <label>左上角时间 (例: 17:05)</label>
+                    <input type="text" id="topTimeText" value="18:31" oninput="redrawCanvas()">
+                    <label>左上角时间坐标</label>
+                    <input type="text" id="topTimeCoords" value="17,35,167,171" oninput="redrawCanvas()">
+                </div>
+
+                <div class="input-group">
+                    <label>支付时分秒 (例: 16:45:14)</label>
+                    <input type="text" id="paymentTimeText" value="16:45:14" oninput="redrawCanvas()">
+                    <label>支付时分秒坐标</label>
+                    <input type="text" id="paymentTimeCoords" value="810,1267,1032,1332" oninput="redrawCanvas()">
+                </div>
+
+                <div class="input-group">
+                    <label>交易单号 (自动生成)</label>
+                    <input type="text" id="transactionIdText" value="42000025642025110601234" oninput="redrawCanvas()">
+                    <label>交易单号坐标</label>
+                    <input type="text" id="transactionIdCoords" value="380,1877,1135,1941" oninput="redrawCanvas()">
+                </div>
+            </section>
+            
+            <section>
+                <h3>步骤 3: 样式与动作</h3>
+                <div class="input-group style-settings">
+                    <label>通用字号:</label>
+                    <input type="number" id="mainFontSize" value="52" min="10" max="200" oninput="redrawCanvas()">
+                    
+                    <label>时间字号:</label>
+                    <input type="number" id="topTimeFontSize" value="46" min="10" max="150" oninput="redrawCanvas()">
+                </div>
+                <div class="input-group style-settings">
+                    <label>对齐方式:</label>
+                    <select id="alignment" onchange="redrawCanvas()">
+                        <option value="center">居中</option>
+                        <option value="left">左对齐</option>
+                        <option value="right">右对齐</option>
+                    </select>
+                    <label>时间字间距:</label>
+                    <input type="number" id="topTimeSpacing" value="0" min="-10" max="50" oninput="redrawCanvas()">
+                </div>
+                
+                <button onclick="downloadImage()">保存并下载图片</button>
+            </section>
+        </div>
+
+        <!-- 预览面板 -->
+        <div class="preview-panel">
+            <h2>实时预览 (右键可保存)</h2>
+            <canvas id="imageCanvas"></canvas>
+            <p id="canvasSizeInfo"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
